@@ -18,5 +18,6 @@ public class Finca {
 	@Column(name="nombre")
 	private String nombre;
 	
-	
+	@Column(name="finca_id")
+	private Long finca_id;
 }
