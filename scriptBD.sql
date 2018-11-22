@@ -12,12 +12,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for labclase
+-- Dumping database structure for examenMP
 DROP DATABASE IF EXISTS `examenMP`;
 CREATE DATABASE IF NOT EXISTS `examenMP` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `examenMP`;
 
--- Dumping structure for table examenMP.tproductor
+-- Dumping structure for table examenMP.productor
 DROP TABLE IF EXISTS `tproductor`;
 CREATE TABLE IF NOT EXISTS `tproductor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,14 +31,14 @@ CREATE TABLE IF NOT EXISTS `tproductor` (
   PRIMARY KEY (`prod_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
--- Dumping structure for table examenMP.tfinca
+-- Dumping structure for table examenMP.finca
 DROP TABLE IF EXISTS `tfinca`;
 CREATE TABLE IF NOT EXISTS `tfinca` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(50) NOT NULL,
 	`prod_id` INT NOT NULL,
 	PRIMARY KEY (`id`),
-	CONSTRAINT `fk_finca_prod` FOREIGN KEY (`prod_id`) REFERENCES `tproductor` (`id`)
+	CONSTRAINT `fk_finca_prod` FOREIGN KEY (`prod_id`) REFERENCES `productor` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table examenMP.tcafe
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `tcafe` (
 	`nombre` VARCHAR(50) NOT NULL,
 	`finca_id` INT NOT NULL,
 	PRIMARY KEY (`id`),
-	CONSTRAINT `fk_cafe_finca` FOREIGN KEY (`finca_id`) REFERENCES `tfinca` (`id`)
+	CONSTRAINT `fk_cafe_finca` FOREIGN KEY (`finca_id`) REFERENCES `finca` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
