@@ -3,27 +3,23 @@
 <head>
 <meta charset="utf-8"></meta>
 <meta http-equiv="Content-Type" content="text/html"></meta>
-<title>Book Index</title>
+<title>Pagina de inicio</title>
 </head>
 <body>
-
 	<div>
-	<table>
-      <tr>
-        <th>Nombre</th>
-        <th>Cedula</th>
-        <th>Empresa</th>
-        <th>Opcion</th>
-      </tr>
-      <tr th:each="prod : ${productor}">
-        <td th:text="${prod.nombre}"><a href="@{/}"></a>></td>
-        <td th:text="${prod.cedula}"></td>
-        <td th:text="${prod.empresa}"></td>
-        <td>
-        <a th:href="@{'/verProductor/' + ${prod.id}}">Ver</a>
-        </td>
-      </tr>
-    </table>
+		<h1>Inicio del sistema</h1>
+		<ul>
+			<div>
+				<li>
+					<h4>
+						<span><a th:href="@{/productorForm}">Registrar productor</a></span>
+					</h4>
+					<h4>
+						<span><a th:href="@{/listaProductores}">Lista productores</a></span>
+					</h4>
+				</li>
+			</div>
+		</ul>
 	</div>
 </body>
 </html>

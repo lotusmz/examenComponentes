@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Formulario: Registro productor</title>
+    <title>Vista Productor</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -10,11 +10,21 @@
 		<ul>
 			<div th:object="${productor}">
 				<li>
+					<p><a th:href="@{'/fincaForm/' + ${id}}">Registrar Finca</a></p>
 					<h4>
-						<span th:text="*{nombre}">NOMBRE</span>
+						<span th:text="*{nombre}"></span>
 					</h4>
 					<h4>
-						<span th:text="*{empresa}">EMPRESA</span>
+						<span th:text="*{cedula}"></span>
+					</h4>
+					<h4>
+						<span th:text="*{empresa}"></span>
+					</h4>
+					<h4>
+						<span>Fincas</span>
+						<li th:each="emp,iterationStatus  : *{fincas}">
+							<h5 th:text="${emp.nombre}"></h5>
+						<li>
 					</h4>
 				</li>
 			</div>

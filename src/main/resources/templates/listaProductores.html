@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<meta http-equiv="Content-Type" content="text/html"></meta>
+<title>Productores Index</title>
+</head>
+<body>
+	<div>
+		<table>
+			<tr>
+				<th>Nombre</th>
+				<th>Cedula</th>
+				<th>Empresa</th>
+				<th>Opcion</th>
+			</tr>
+			<tr th:each="prod : ${productor}">
+				<td th:text="${prod.nombre}"></td>
+				<td th:text="${prod.cedula}"></td>
+				<td th:text="${prod.empresa}"></td>
+				<td><a th:href="@{'/verProductor/' + ${prod.id}}">Ver</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
