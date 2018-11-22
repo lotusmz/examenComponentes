@@ -8,11 +8,21 @@
 	<h1>Registro de nuevo productor</h1>
     <form action="#" th:action="@{/index}" th:object="${productor}" method="post">
     	<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+    	<p>Empresa: <input type="text" th:field="*{empresa}" /></p>
 		<p>Cedula: <input type="text" th:field="*{cedula}" /></p>
 		<p>Dirección: <input type="text" th:field="*{direccion}" /></p>
 		<p>Distrito: <input type="text" th:field="*{distrito}" /></p>
 		<p>Cantón: <input type="text" th:field="*{canton}" /></p>
-		<p>Provincia: <input type="text" th:field="*{provincia}" /></p>
+		<p>Provincia:</p>
+		<select th:field="*{provincia}">
+			<option th:value="'sanjose'" th:text="SanJose"></option>
+    		<option th:value="'heredia'" th:text="Heredia"></option>
+    		<option th:value="'alajuela'" th:text="Alajuela"></option>
+    		<option th:value="'cartago'" th:text="Cartago"></option>
+    		<option th:value="'limon'" th:text="Limon"></option>
+    		<option th:value="'puntarenas'" th:text="Puntarenas"></option>
+    		<option th:value="'guanacaste'" th:text="Guanacaste"></option>
+		</select>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

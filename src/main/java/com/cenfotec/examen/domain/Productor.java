@@ -1,41 +1,44 @@
 package com.cenfotec.examen.domain;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TProductor")
+@Table(name="productor")
 public class Productor {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="nombre")
 	private String nombre;
-	
-	@Column(name="cedula")
-	private String cedula;
-	
-	@Column(name="empresa")
-	private String empresa;
-	
-	@Column(name="direccion")
 	private String direccion;
-	
-	@Column(name="distrito")
 	private String distrito;
-	
-	@Column(name="canton")
 	private String canton;
-	
-	@Column(name="provincia")
 	private String provincia;
+	private String cedula;
+	private String empresa;
+	private Set<Finca> fincas;
+	
+	public Productor() {}
 
+	public Productor(String nombre, String direccion, String distrito, String canton, String provincia, String cedula,
+			String empresa) {
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.distrito = distrito;
+		this.canton = canton;
+		this.provincia = provincia;
+		this.cedula = cedula;
+		this.empresa = empresa;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -50,22 +53,6 @@ public class Productor {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
-
-	public String getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
 	}
 
 	public String getDireccion() {
@@ -99,5 +86,31 @@ public class Productor {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	@OneToMany(mappedBy="productor", cascade=CascadeType.ALL)
+	public Set<Finca> getFincas() {
+		return fincas;
+	}
+
+	public void setFincas(Set<Finca> fincas) {
+		this.fincas = fincas;
+	}
+
 }
+
