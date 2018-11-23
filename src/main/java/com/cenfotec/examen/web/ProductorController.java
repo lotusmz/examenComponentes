@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cenfotec.examen.domain.Cafe;
 import com.cenfotec.examen.domain.Finca;
 import com.cenfotec.examen.domain.Productor;
 import com.cenfotec.examen.repository.ProductorRepository;
@@ -51,6 +52,8 @@ public class ProductorController {
 		List<Productor> productores = repo.findAll();	
 		for(Productor productor : productores) {
 			if(productor.getId().equals(id)) {	
+				Set<Finca> fincas = new HashSet<Finca>();
+						fincas = productor.getFincas();
 				model.addAttribute("productor", productor);
 			}
 		}		
@@ -74,4 +77,44 @@ public class ProductorController {
 		repo.save(prodUpdate);
 		return "index";
 	}
+
+	@GetMapping("/cafeForm/{id}")
+	public String cafeForm(@PathVariable Long id, Model model) {
+		model.addAttribute("cafe", new Cafe());
+		return "cafeForm";
+	}
+	
+	@PostMapping("/cafeForm/{id}")
+	public String cafeSubmit(@PathVariable Long id, @ModelAttribute Cafe cafe) {	
+		
+		List<Productor> prodUpdate = repo.findAll();
+		Set<Finca> fns;
+		Set<Cafe> cfs = null;
+		Finca finca = null;
+		Long prod_id = (long) 0;
+		Productor pro;
+		
+		for(Productor prod:prodUpdate) {
+			Set<Finca> fincas = prod.getFincas();
+			for(Finca fn:fincas) {
+				if(fn.getId().equals(id)) {
+					Set<Cafe> cafes = new HashSet<Cafe>() {{
+						add(new Cafe(cafe.getNombre(), fn));
+					}};
+					finca = fn;
+					cfs = cafes;
+					prod_id=fn.getProductor().getId();	
+				}
+			}			
+		}
+		
+		pro = repo.getOne(prod_id);
+		pro.getFincas().remove(finca);
+		finca.setCafes(cfs);
+		pro.getFincas().add(finca);
+		repo.save(pro);
+		
+		return "index";
+	}
+	
 }

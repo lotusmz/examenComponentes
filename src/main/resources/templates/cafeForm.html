@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<meta http-equiv="Content-Type" content="text/html"></meta>
+<title>Registrar café</title>
+</head>
+<body>
+	<h1>Registrar tipo de café</h1>
+    <form action="#" th:action="@{'/cafeForm/' + ${id}}" th:object="${cafe}" method="post">
+    	<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

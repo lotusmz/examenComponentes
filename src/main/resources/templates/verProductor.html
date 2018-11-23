@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Vista Productor</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Vista Productor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<div>
@@ -10,7 +10,9 @@
 		<ul>
 			<div th:object="${productor}">
 				<li>
-					<p><a th:href="@{'/fincaForm/' + ${id}}">Registrar Finca</a></p>
+					<p>
+						<a th:href="@{'/fincaForm/' + ${id}}">Registrar Finca</a>
+					</p>
 					<h4>
 						<span th:text="*{nombre}"></span>
 					</h4>
@@ -21,10 +23,17 @@
 						<span th:text="*{empresa}"></span>
 					</h4>
 					<h4>
-						<span>Fincas</span>
-						<li th:each="emp,iterationStatus  : *{fincas}">
-							<h5 th:text="${emp.nombre}"></h5>
-						<li>
+						<h3>Fincas</h3>
+						<table>
+							<tr>
+								<th>Nombre</th>
+								<th>Opcion</th>
+							</tr>
+							<tr th:each="emp,iterationStatus  : *{fincas}">
+								<td th:text="${emp.nombre}"></td>
+								<td><a th:href="@{'/cafeForm/' + ${emp.id}}">Registrar café</a></td>
+							</tr>
+						</table>
 					</h4>
 				</li>
 			</div>
