@@ -51,11 +51,6 @@ public class ProductorController {
 		List<Productor> productores = repo.findAll();	
 		for(Productor productor : productores) {
 			if(productor.getId().equals(id)) {	
-				Set<Finca> fincas = new HashSet<Finca>();
-						fincas = productor.getFincas();
-				for(Finca fn : fincas) {
-					
-				}
 				model.addAttribute("productor", productor);
 			}
 		}		
